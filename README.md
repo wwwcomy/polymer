@@ -1,2 +1,2 @@
-# polymer
-Some little baby games based polymer
+# polymer-games
+Some little baby games based on polymer2
