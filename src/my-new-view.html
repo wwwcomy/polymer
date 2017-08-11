@@ -1,0 +1,46 @@
+<!-- 载入 Polymer.Element 基类 -->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./expressionWithOperator.html">
+<link rel="import" href="./SelectQuestion.html">
+<link rel="import" href="./RadioQuestion.html">
+<link rel="import" href="./InputQuestion.html">
+
+
+<dom-module id="my-new-view">
+<!-- 定义元素的样式和本地 DOM -->
+<template>
+    <style>
+     :host {
+        display: block;
+
+        padding: 5 px;
+    }
+    </style>
+    <!-- <template  is="dom-repeat" items="{{dataa}}">
+    </template> -->
+    
+    <select-question id="select"></select-question>
+    <input-question id="input"></input-question>
+    <radio-question id="radio"></radio-question>
+    <input type="button" value="Click Me To Check!" on-click="check" />
+</template>
+  <script>
+    // 您的新元素扩展 Polymer.Element 基类
+    class MyNewView extends Polymer.Element {
+      static get is() { return 'my-new-view'; }
+      
+      static get properties() {
+      }
+      check(){
+        console.log(this.$.input.isCorrect());
+        console.log(this.$.select.isCorrect());
+        console.log(this.$.radio.isCorrect());
+      }
+      constructor() {
+        super();
+      }
+    }
+    //现在，注册您的新的自定义元素，以便浏览器能使用它
+    customElements.define(MyNewView.is, MyNewView);
+  </script>
+</dom-module>

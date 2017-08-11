@@ -1,0 +1,46 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="input-question">
+<!-- 定义元素的样式和本地 DOM -->
+<template>
+    <style>
+     :host {
+        display: block;
+
+        padding: 10px;
+    }
+    </style>
+    <expression-with-operator id="expression"></expression-with-operator>
+
+    <input type="text" name="result" id="result"></input>
+    <span id="icon"></span>
+    <!--
+    <iron-icon icon="menu" id="ironIcon"></iron-icon>
+    <iron-icon icon="star" id="ironIcon1"></iron-icon>
+    -->
+</template>
+  <script>
+    // 您的新元素扩展 Polymer.Element 基类
+    class InputQuestion extends Polymer.Element {
+      static get is() { return 'input-question'; }
+      
+      constructor() {
+        super();
+      }
+
+      isCorrect(){
+        let answer = this.$.expression.result==this.$.result.value;
+        if(answer){
+          this.$.icon.innerHTML = "√";
+        } else {
+          this.$.icon.innerHTML = "×";
+        }
+        return answer;
+      }
+    }
+    //现在，注册您的新的自定义元素，以便浏览器能使用它
+    customElements.define(InputQuestion.is, InputQuestion);
+  </script>
+</dom-module>

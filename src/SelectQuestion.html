@@ -1,0 +1,88 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+
+<dom-module id="select-question">
+<!-- 定义元素的样式和本地 DOM -->
+<template>
+    <style>
+     :host {
+        display: block;
+
+        padding: 10px;
+    }
+    </style>
+    <expression-with-operator id="expression"></expression-with-operator>
+    <!-- <paper-dropdown-menu label="Dinosaurs" id="select">
+        <paper-listbox slot="dropdown-content" selected="1">
+            <paper-item>0</paper-item>
+            <paper-item>1</paper-item>
+            <paper-item>2</paper-item>
+            <paper-item>3</paper-item>
+            <paper-item>4</paper-item>
+            <paper-item>5</paper-item>
+            <paper-item>6</paper-item>
+            <paper-item>7</paper-item>
+            <paper-item>8</paper-item>
+            <paper-item>9</paper-item>
+            <paper-item>10</paper-item>
+            <paper-item>11</paper-item>
+            <paper-item>12</paper-item>
+            <paper-item>13</paper-item>
+            <paper-item>14</paper-item>
+            <paper-item>15</paper-item>
+            <paper-item>16</paper-item>
+            <paper-item>17</paper-item>
+            <paper-item>18</paper-item>
+            <paper-item>19</paper-item>
+            <paper-item>20</paper-item>
+        </paper-listbox>
+    </paper-dropdown-menu>-->
+
+    <select id="select">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+    </select>
+    <span id="icon"></span>
+</template>
+  <script>
+    // 您的新元素扩展 Polymer.Element 基类
+    class SelectQuestion extends Polymer.Element {
+      static get is() { return 'select-question'; }
+      
+      constructor() {
+          super();
+      }
+
+      isCorrect(){
+        let answer = this.$.expression.result==this.$.select.value;
+        if(answer){
+          this.$.icon.innerHTML = "√";
+        } else {
+          this.$.icon.innerHTML = "×";
+        }
+        return answer;
+      }
+    }
+    //现在，注册您的新的自定义元素，以便浏览器能使用它
+    customElements.define(SelectQuestion.is, SelectQuestion);
+  </script>
+</dom-module>

@@ -1,0 +1,64 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../bower_components/paper-radio-group/paper-radio-group.html">
+
+
+<dom-module id="radio-question">
+<!-- 定义元素的样式和本地 DOM -->
+<template>
+    <style>
+     :host {
+        display: block;
+        padding: 10px;
+    }
+    </style>
+    <expression-with-operator id="expression"></expression-with-operator>
+    <paper-radio-group id="radioGroup" allow-empty-selection>
+        <paper-radio-button name="0">0</paper-radio-button>
+        <paper-radio-button name="1">1</paper-radio-button>
+        <paper-radio-button name="2">2</paper-radio-button>
+        <paper-radio-button name="3">3</paper-radio-button>
+        <paper-radio-button name="4">4</paper-radio-button>
+        <paper-radio-button name="5">5</paper-radio-button>
+        <paper-radio-button name="6">6</paper-radio-button>
+        <paper-radio-button name="7">7</paper-radio-button>
+        <paper-radio-button name="8">8</paper-radio-button>
+        <paper-radio-button name="9">9</paper-radio-button>
+        <paper-radio-button name="10">10</paper-radio-button>
+        <paper-radio-button name="11">11</paper-radio-button>
+        <paper-radio-button name="12">12</paper-radio-button>
+        <paper-radio-button name="13">13</paper-radio-button>
+        <paper-radio-button name="14">14</paper-radio-button>
+        <paper-radio-button name="15">15</paper-radio-button>
+        <paper-radio-button name="16">16</paper-radio-button>
+        <paper-radio-button name="17">17</paper-radio-button>
+        <paper-radio-button name="18">18</paper-radio-button>
+        <paper-radio-button name="19">19</paper-radio-button>
+        <paper-radio-button name="20">20</paper-radio-button>
+    </paper-radio-group>
+
+    <span id="icon"></span>
+</template>
+  <script>
+    // 您的新元素扩展 Polymer.Element 基类
+    class RadioQuestion extends Polymer.Element {
+      static get is() { return 'radio-question'; }
+      
+      constructor() {
+        super();
+      }
+
+      isCorrect(){
+        let answer = this.$.expression.result==this.$.radioGroup.selected;
+        if(answer){
+          this.$.icon.innerHTML = "√";
+        } else {
+          this.$.icon.innerHTML = "×";
+        }
+        return answer;
+      }
+    }
+    //现在，注册您的新的自定义元素，以便浏览器能使用它
+    customElements.define(RadioQuestion.is, RadioQuestion);
+  </script>
+</dom-module>

@@ -1,0 +1,61 @@
+<link rel="import"
+  href="../bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="expression-with-operator"> <!-- 定义元素的样式和本地 DOM -->
+<template>
+<style>
+:host {
+  padding: 10px;
+}
+</style>
+<span><strong>{{item.input1}} {{item.operator}} {{item.input2}}=</strong></span> 
+</template>
+
+  <script>
+    // 您的新元素扩展 Polymer.Element 基类
+    class ExpressionWithOperator extends Polymer.Element {
+      static get is() { return 'expression-with-operator'; }
+
+      static get properties() {
+          return {
+            item: {
+              type: Object,
+              value:function(){
+                console.log("222");
+                let operators = ["+","-"];
+                let input1 = parseInt(10*Math.random());
+                let input2 = parseInt(10*Math.random());
+                let operator="";
+                // using such kind of algorithm, plus:minus ~= 3:1
+                if(input1<input2){
+                  operator = "+";
+                } else {
+                  operator = operators[parseInt(2*Math.random())];
+                }
+                return {"input1":input1,"input2":input2,"operator":operator};
+              },
+              observer: '_activeChanged'
+            },
+            result:{
+              type:Number
+            }
+          }
+        }
+        _activeChanged(){
+          switch(this.item.operator){
+            case "+":
+              this.result = this.item.input1+this.item.input2;
+              break;
+            case "-":
+              this.result = this.item.input1-this.item.input2;
+              break;
+            default:
+              console.error("Operator not supported");
+              break;
+          }
+        }
+    }
+    //现在，注册您的新的自定义元素，以便浏览器能使用它
+    customElements.define(ExpressionWithOperator.is, ExpressionWithOperator);
+  </script> </dom-module>
